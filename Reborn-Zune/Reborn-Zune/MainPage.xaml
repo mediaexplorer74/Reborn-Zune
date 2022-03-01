@@ -538,7 +538,8 @@
                 ShadowOpacity="0.3">
                 <Border />
             </controls:DropShadowPanel>
-            <Image x:Name="CurrentPlayingThumbnailPlaceHolder" Source="ms-appx:///Assets/Vap-logo-placeholder.jpg" />
+            <!--Vap-logo-placeholder.jpg-->
+            <Image x:Name="CurrentPlayingThumbnailPlaceHolder" Source="ms-appx:///Assets/TilePageButton.png" />
             <Image x:Name="CurrentPlayingThumbnail" Source="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.PreviewImage, Mode=OneWay}" />
         </Grid>
     </Grid>

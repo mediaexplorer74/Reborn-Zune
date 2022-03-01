@@ -184,19 +184,21 @@ namespace Reborn_Zune.ViewModel
         private void CreateTile()
         {
             var a = new ObservableCollection<UIElement>();
-            
-            for (int i = 0; i < MaxTileNumer; i++)
-            {
-                int factor = Spans(i);
 
-                int id = 1; //rnd.Next(BitmapList.Count); // ?
+            //RnD
+            for (uint i = 1; i < MaxTileNumer; i++)
+            //for (int i = 0; i < MaxTileNumer; i++)
+            {
+                int factor = Spans((int)i);
+
+                int id = rnd.Next(BitmapList.Count); // 1
 
                 Tile tile = new Tile()
                 {
                     Width = factor * 70,
                     Height = factor * 70,
-                    Thumbnail = BitmapList[id],
-                    Index = i
+                    //Thumbnail = BitmapList[id],
+                    Index = (uint)i
                 };
 
                 a.Add(tile);

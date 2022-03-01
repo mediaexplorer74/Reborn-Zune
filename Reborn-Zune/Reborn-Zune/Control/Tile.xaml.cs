@@ -17,9 +17,10 @@ namespace Reborn_Zune.Control
         private BitmapImage _bitmapImage;
         private Compositor _compositor;
 
-        public int Index
+        //public int Index
+        public uint Index
         {
-            get { return (int)GetValue(IndexProperty); }
+            get { return (uint)GetValue(IndexProperty); }//{ return (int)GetValue(IndexProperty); }
             set { SetValue(IndexProperty, value); }
         }
 

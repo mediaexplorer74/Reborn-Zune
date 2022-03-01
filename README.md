@@ -7,9 +7,10 @@ combining the fasinating and attractive elements from Zune with Fluent design.
 If not, I wish this repo, this app would provide you a new level of experience of music player app."
 
 ## Screenshots
-![Pic 1](Artwork/pic1.png)
-![Pic 2](Artwork/pic2.png)
-![Pic 3](Artwork/pic3.png)
+![Pic 1](Images/shot1.png)
+![Pic 2](Images/shot2.png)
+![Pic 3](Images/shot3.png)
+![Pic 4](Images/shot4.png)
 
 ### What is
 This is a music player that plays local music files in your library. 
@@ -36,13 +37,7 @@ Target Version: 10.0.19041.0
 
 Min Version: 10.0.17xxx.x (by now)
 
-## Thanks
-- [Junda Yin](https://github.com/jasonwun/) "Zune re-developer" :)
-
 ## The Original (Zune-Reburn at MS Store) 
 http://www.microsoft.com/store/apps/9MWK5C8DFM1P
-
-
-AS IS. RnD only. No support.
 
 -- [m][e] 2022

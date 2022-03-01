@@ -7,6 +7,7 @@ using Reborn_Zune.Utilities;
 using Reborn_Zune.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -211,8 +212,19 @@ namespace Reborn_Zune
 
                         int imgSouceIdx = rnd.Next(TileVM.BitmapList.Count);
                         int tileIdx = rnd.Next((int)(TileVM.Tiles.Count * 0.8));
-                        var imgSource = TileVM.BitmapList[imgSouceIdx];
-                        var tile = TileVM.Tiles[tileIdx] as Tile;
+
+                        BitmapImage imgSource = null;
+
+                        try
+                        {
+                            imgSource = TileVM.BitmapList[imgSouceIdx];
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("[ex] TilePage - Tiles_Loaded Exception: " + ex.Message);
+                        }
+
+                        Tile tile = TileVM.Tiles[tileIdx] as Tile;
 
                         tile.UpdateThumbnail(_compositor, imgSource);
                     });

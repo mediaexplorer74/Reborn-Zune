@@ -1,6 +1,6 @@
-﻿using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
+﻿//using Microsoft.AppCenter;
+//using Microsoft.AppCenter.Analytics;
+//using Microsoft.AppCenter.Crashes;
 using Reborn_Zune_Common.Services;
 using Reborn_Zune_MusicLibraryService;
 using System;
@@ -31,7 +31,8 @@ namespace Reborn_Zune
             
             this.InitializeComponent();
             this.Construct();
-            AppCenter.Start("c5fcab4c-7057-489f-b350-f74dd185fdad", typeof(Analytics), typeof(Crashes));
+            
+            //AppCenter.Start("c5fcab4c-7057-489f-b350-f74dd185fdad", typeof(Analytics), typeof(Crashes));
 
             ServiceLocator.SetInstance(new MusicLibraryService());
 
