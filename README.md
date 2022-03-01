@@ -1,4 +1,5 @@
 # Project Reborn Zune
+![Zune Logo](Artwork/Zune-Reburn.png)
 
 ## Words "forked" from author of Reborn Zune :)
 "Glad you find this repo. If you've heard about Zune, you would be glad that this repo is all about 
