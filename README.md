@@ -12,11 +12,6 @@ If not, I wish this repo, this app would provide you a new level of experience o
 - RnD
 - Refactoring (Test + Future .NET Core project moved to _A_ folder)
 
-## Screenshots
-![Pic 1](Images/shot1.png)
-![Pic 2](Images/shot2.png)
-![Pic 3](Images/shot3.png)
-![Pic 4](Images/shot4.png)
 
 ### What is
 This is a music player that plays local music files in your library. 
@@ -37,6 +32,12 @@ there's no way to not having Fluent design implemented in a modern UWP app.
 During you usage, you would experience the combination of the old Metro Design 
 and the modern Fluent Design.
 
+## Screenshots
+![Pic 1](Images/shot1.png)
+![Pic 2](Images/shot2.png)
+![Pic 3](Images/shot3.png)
+![Pic 4](Images/shot4.png)
+![Pic 5](Images/shot5.png)
 
 ## Environment
 Target Version: 10.0.19041.0
