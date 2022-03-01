@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using Windows.Foundation;
@@ -420,8 +421,12 @@ namespace Reborn_Zune.Control
         /// </summary>
         /// <param name="availableSize">Available size</param>
         /// <returns>Total Size required to accommodate all the Children</returns>
+        // protected override
         protected override Size MeasureOverride(Size availableSize)
         {
+            //int a = 2;
+            Debug.WriteLine("[i] MainPage - Measure override");
+            
             // Compositor will be null the very first time
             if (_compositor == null)
             {
@@ -571,7 +576,12 @@ namespace Reborn_Zune.Control
             var matrixSize = matrix.GetFilledMatrixDimensions();
             // Calculate the size required by the panel
             return new Size(matrixSize.Width * cellSize.Width, matrixSize.Height * cellSize.Height);
-        }
+
+            // TEMP
+            //return availableSize;
+
+        }//MeasureOverride end
+
 
         /// <summary>
         /// Handles the Arrange pass during Layout

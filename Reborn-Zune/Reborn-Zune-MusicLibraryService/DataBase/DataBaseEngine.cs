@@ -1,21 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Reborn_Zune_MusicLibraryEFCoreModel;
-using Reborn_Zune_MusicLibraryService.DataModel;
-using Reborn_Zune_MusicLibraryService.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using TagLib;
+
+using Microsoft.EntityFrameworkCore;
+
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 
+using Reborn_Zune_MusicLibraryEFCoreModel;
+using Reborn_Zune_MusicLibraryService.DataModel;
+using Reborn_Zune_MusicLibraryService.Utility;
+
+using TagLib;
+
+// Reborn_Zune_MusicLibraryService.DataBase namespace
 namespace Reborn_Zune_MusicLibraryService.DataBase
 {
+    // DataBaseEngine class 
     static class DataBaseEngine
     {
         private const string UNKNOWN_ARTIST = "Unknown Artist";
@@ -31,9 +37,9 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                     db.Database.Migrate();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] DatabaseEngine Initialize Exception: " + ex.Message);
             }
 
         }
@@ -88,9 +94,9 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                 }
                 Debug.WriteLine("DataBase Succeed");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] DatabaseEngine Add Exception: " + ex.Message);
             }
         }
 
@@ -105,9 +111,9 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                     _context.SaveChanges();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] DatabaseEngine Delete Exception: " + ex.Message);
             }
         }
 
@@ -166,9 +172,9 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                 }
                 Debug.WriteLine("Update Succeed");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] DatabaseEngine Update Exception: " + ex.Message);
             }
         }
 
@@ -186,23 +192,59 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                 }
                 Debug.WriteLine("Update Succeed");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] DatabaseEngine Update Exception: " + ex.Message);
             }
         }
 
+        // FetchAllAsync
         public static async Task<Library> FetchAllAsync()
         {
             Library library = new Library();
+
+            /*
             try
             {
                 using (var _context = new MusicLibraryDbContext())
                 {
-                    library.Musics = new ObservableCollection<MLMusicModel>(_context.Musics.Select(m => new MLMusicModel(m)).ToList());
-                    library.MInP = new ObservableCollection<MLMusicInPlaylistModel>(_context.MusicInPlaylists.Select(m => new MLMusicInPlaylistModel(m)).ToList());
-                    library.Playlists = new ObservableCollection<MLPlayListModel>(_context.Playlists.Select(p => new MLPlayListModel(p)).ToList()); 
-                    library.Thumbnails = new ObservableCollection<MLThumbnailModel>(_context.Thumbnails.Select(t => new MLThumbnailModel(t)).ToList()); 
+                    //library.Musics = null;
+
+                    try
+                    {
+                        library.Musics = new ObservableCollection<MLMusicModel>(_context.Musics.Select(m => new MLMusicModel(m)).ToList());
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("[ex] library.Musics Exception: " + ex.Message);
+                    }
+
+                    try
+                    {
+                        library.MInP = new ObservableCollection<MLMusicInPlaylistModel>(_context.MusicInPlaylists.Select(m => new MLMusicInPlaylistModel(m)).ToList());
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("[ex] library.MInP Exception: " + ex.Message);
+                    }
+
+                    try
+                    { 
+                        library.Playlists = new ObservableCollection<MLPlayListModel>(_context.Playlists.Select(p => new MLPlayListModel(p)).ToList());
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("[ex] library.Playlists Exception: " + ex.Message);
+                    }
+
+                    try
+                    {
+                        library.Thumbnails = new ObservableCollection<MLThumbnailModel>(_context.Thumbnails.Select(t => new MLThumbnailModel(t)).ToList());
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("[ex] library.Thumbnails Exception: " + ex.Message);
+                    }
                 }
 
                 foreach(var item in library.Musics)
@@ -217,14 +259,18 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
 
                 return library;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] DatabaseEngine FetchAllAsync Exception:" + ex.Message);
             }
+
+            */
             return library;
 
-        }
+        }//FetchAllAsync end
 
+
+        // Reset
         public static void Reset()
         {
             try
@@ -234,11 +280,12 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                     _context.Database.EnsureDeleted();
                 }
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine("[ex] DatabaseEngine Reset Exception: " + ex.Message);
             }
-        }
+        }//Reset end
+
         #endregion
 
         #region Helper
@@ -350,5 +397,6 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
         }
         #endregion
 
-    }
-}
+    }//DataBaseEngine class end
+
+}//namespace end

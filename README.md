@@ -1,4 +1,4 @@
-# Project Reborn Zune v0.2.4-alpha (tech num. 1.2.4)
+# Project Reborn Zune v0.2.5-alpha (tech num. 1.2.5)
 ![Zune Logo](Artwork/Zune-Reburn.png)
 
 ## Words "forked" from author of Reborn Zune :)

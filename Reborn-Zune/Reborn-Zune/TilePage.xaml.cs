@@ -77,22 +77,29 @@ namespace Reborn_Zune
             titleBar.ButtonPressedForegroundColor = Colors.Black;
         }
 
+        // TileRoot_Loaded
         private void TileRoot_Loaded(object sender, RoutedEventArgs e)
         {
             var displayInformation = DisplayInformation.GetForCurrentView();
             var screenSize = new Size((int)displayInformation.ScreenWidthInRawPixels,
                                       (int)displayInformation.ScreenHeightInRawPixels);
+
             Vector2 sizeLightBounds = new Vector2((float)screenSize.Width, (float)screenSize.Height);
             _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+
             _root = ElementCompositionPreview.GetElementVisual(tilesPanel);
             _pointLight = _compositor.CreatePointLight();
             _secondPointLight = _compositor.CreatePointLight();
             _pointLight.Offset = new Vector3(-2500f, -2500f, 300f);
             _secondPointLight.Offset = new Vector3(-2500f, -2500f, 300f);
-            _pointLight.Intensity = 1.3f;
-            _secondPointLight.Intensity = 1.3f;
+
+            //_pointLight.Intensity = 1.3f;
+            //_secondPointLight.Intensity = 1.3f;
+
             _ambientLight = _compositor.CreateAmbientLight();
-            _ambientLight.Intensity = 0.20f;
+
+            //_ambientLight.Intensity = 0.20f;
+
             _ambientLight.Color = "#d3d3d3".ToColor();
             
             _pointLight.CoordinateSpace = _root;
@@ -142,6 +149,7 @@ namespace Reborn_Zune
             secondLightPositionAnimation.InsertKeyFrame(.64f, new Vector3(2300f, 700f, lightDepth), _compositor.CreateLinearEasingFunction());
             secondLightPositionAnimation.InsertKeyFrame(.8f, new Vector3(2300f, 100f, lightDepth), _compositor.CreateLinearEasingFunction());
             secondLightPositionAnimation.InsertKeyFrame(1f, new Vector3(2300f, 700f, lightDepth), _compositor.CreateLinearEasingFunction());
+
             secondLightPositionAnimation.Duration = TimeSpan.FromSeconds(animationDuration);
             secondLightPositionAnimation.DelayTime = TimeSpan.FromMilliseconds(animationDelay);
             secondLightPositionAnimation.IterationBehavior = AnimationIterationBehavior.Forever;
@@ -154,6 +162,7 @@ namespace Reborn_Zune
             secondLightColorAnimation.InsertKeyFrame(.6f, "#315b8a".ToColor());
             secondLightColorAnimation.InsertKeyFrame(.8f, "#7d2185".ToColor());
             secondLightColorAnimation.InsertKeyFrame(1f, "#81268b".ToColor());
+
             secondLightColorAnimation.Duration = TimeSpan.FromSeconds(animationDuration);
             secondLightColorAnimation.DelayTime = TimeSpan.FromMilliseconds(animationDelay);
             secondLightColorAnimation.IterationBehavior = AnimationIterationBehavior.Forever;
@@ -161,7 +170,7 @@ namespace Reborn_Zune
             _secondPointLight.StartAnimation("Offset", secondLightPositionAnimation);
             _secondPointLight.StartAnimation("Color", secondLightColorAnimation);
             #endregion
-        }
+        }//TileRoot_Loaded end
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

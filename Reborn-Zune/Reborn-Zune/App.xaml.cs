@@ -1,10 +1,7 @@
-﻿//using Microsoft.AppCenter;
-//using Microsoft.AppCenter.Analytics;
-//using Microsoft.AppCenter.Crashes;
+﻿using System;
+using System.Diagnostics;
 using Reborn_Zune_Common.Services;
 using Reborn_Zune_MusicLibraryService;
-using System;
-using System.Diagnostics;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
@@ -30,18 +27,17 @@ namespace Reborn_Zune
         {
             
             this.InitializeComponent();
+
             this.Construct();
             
-            //AppCenter.Start("c5fcab4c-7057-489f-b350-f74dd185fdad", typeof(Analytics), typeof(Crashes));
-
             ServiceLocator.SetInstance(new MusicLibraryService());
 
-            this.UnhandledException += App_UnhandledException;
+            //this.UnhandledException += App_UnhandledException;
         }
 
         private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            Debug.WriteLine(e.Message.ToString());
+            Debug.WriteLine("[ex] Unhandled exception: " + e.Message.ToString());
         }
 
         /// <summary>
@@ -83,7 +79,7 @@ namespace Reborn_Zune
                 // Ensure the current window is active
 
                 // using Windows.UI.ViewManagement;
-                ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500,300));
+                ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(250, 150));//(new Size(500,300));
                 var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
                 coreTitleBar.ExtendViewIntoTitleBar = true;
 

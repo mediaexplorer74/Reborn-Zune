@@ -1,60 +1,75 @@
-﻿using Microsoft.Toolkit.Uwp.Helpers;
-using Microsoft.Toolkit.Uwp.UI.Animations;
-using Microsoft.Toolkit.Uwp.UI.Controls;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
-using Reborn_Zune.Control;
-using Reborn_Zune.Model;
-using Reborn_Zune.Model.Interface;
-using Reborn_Zune.Utilities;
-using Reborn_Zune.ViewModel;
+﻿// MainPage 
+
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+
 using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Animations;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
 
+using Reborn_Zune.Control;
+using Reborn_Zune.Model;
+using Reborn_Zune.Model.Interface;
+using Reborn_Zune.Utilities;
+using Reborn_Zune.ViewModel;
+
+
+// Reborn_Zune namespace
 namespace Reborn_Zune
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
+    // MainPage class
     public sealed partial class MainPage : Page
     {
 
-        private MainViewModel MainVM { get; set; }
-        private Compositor _compositor;
-        private Visual _floatingVisual;
-        private object  _storedItem;
+        private MainViewModel MainVM { get; set; } // 
+
+        private Compositor _compositor; // 
+        
+        private Visual _floatingVisual; // 
+        
+        private object  _storedItem; // 
+        
+
+        // MainPage
         public MainPage()
         {
             this.InitializeComponent();
             
+            // 
             _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
-            TitleBarSetting();
-            MainVM = new MainViewModel(Dispatcher);
-            _floatingVisual = PlayerFloating.GetVisual();
-        }
-        
 
+            // 
+            TitleBarSetting();
+            
+            // 
+            MainVM = new MainViewModel(Dispatcher);
+            
+            // 
+            _floatingVisual = PlayerFloating.GetVisual();
+
+
+            //RnD
+            bool result = MainVM.LibraryViewModel.UpdateAllPlaylists();
+            
+
+        }//MainPage end
+
+        // RnD
+        // ShowFloating
+        /*
         private void ShowFloating()
         {
             PlayerFloating.Visibility = Visibility.Visible;
@@ -69,7 +84,9 @@ namespace Reborn_Zune
             offsetAnim.InsertKeyFrame(1f, new Vector3(0f, endY, 0f));
             _floatingVisual.StartAnimation("Translation", offsetAnim);
         }
+        */
 
+        // TitleBarSetting
         private static void TitleBarSetting()
         {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
@@ -83,8 +100,10 @@ namespace Reborn_Zune
             titleBar.ButtonHoverForegroundColor = Colors.Black;
             titleBar.ButtonPressedBackgroundColor = "#f5f5f5".ToColor();
             titleBar.ButtonPressedForegroundColor = Colors.Black;
-        }
 
+        }//TitleBarSetting end
+
+        // GridView_ChoosingItemContainer
         private void GridView_ChoosingItemContainer(ListViewBase sender, ChoosingItemContainerEventArgs args)
         {
             if (args.ItemContainer != null)
@@ -101,12 +120,16 @@ namespace Reborn_Zune
             container.Tapped += Container_Tapped;
             
             args.ItemContainer = container;
-        }
 
+        }//GridView_ChoosingItemContainer end
+
+
+        // Container_Tapped
         private async void Container_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var rootElement = sender as FrameworkElement;
             var shadow = rootElement.FindDescendant<DropShadowPanel>();
+
             if (shadow != null)
             {
 
@@ -115,6 +138,7 @@ namespace Reborn_Zune
             }
 
             var spotlight = rootElement.FindDescendant<ShadowSpotLightControl>();
+            
             if (spotlight != null)
             {
 
@@ -123,6 +147,7 @@ namespace Reborn_Zune
             }
 
             var border = rootElement.FindDescendantByName("border");
+            
             if (border != null)
             {
 
@@ -137,7 +162,9 @@ namespace Reborn_Zune
                 var animation = new OpacityAnimation() { To = 0, Duration = TimeSpan.FromMilliseconds(200) };
                 animation.StartAnimation(buttons);
             }
+
             await Task.Delay(200);
+            
             shadow.Visibility = Visibility.Collapsed;
             spotlight.Visibility = Visibility.Collapsed;
             border.Visibility = Visibility.Collapsed;
@@ -145,9 +172,13 @@ namespace Reborn_Zune
 
 
             _storedItem = (sender as GridViewItem).Content;
+            
             //clickGridViewItem = rootElement.FindDescendant<ImageEx>();
+
             MainVM.SetClickList((e.OriginalSource as FrameworkElement).DataContext as ILocalListModel);
+           
             var gridView = rootElement.FindAscendant<GridView>();
+            
             if(gridView.Name == "albums")
             {
                 var ca1 = albums.PrepareConnectedAnimation("ca1", _storedItem, "Thumbnail");
@@ -158,8 +189,11 @@ namespace Reborn_Zune
             }
 
             Frame.Navigate(typeof(PlaylistDetailPage), MainVM, new SuppressNavigationTransitionInfo());
-        }
 
+        }//Container_Tapped end
+
+
+        // ItemContainer_PointerExited
         private async void ItemContainer_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             var rootElement = sender as FrameworkElement;
@@ -195,8 +229,11 @@ namespace Reborn_Zune
             spotlight.Visibility = Visibility.Collapsed;
             border.Visibility = Visibility.Collapsed;
             buttons.Visibility = Visibility.Collapsed;
-        }
 
+        }//ItemContainer_PointerExited end
+
+
+        // ItemContainer_PointerEntered
         private void ItemContainer_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             var rootElement = sender as FrameworkElement;
@@ -234,11 +271,11 @@ namespace Reborn_Zune
                     animation.StartAnimation(buttons);
                 }
             }
-        }
-        
-        
+        }//ItemContainer_PointerEntered end
 
 
+
+        // PlayerFloating_PointerEntered
         private void PlayerFloating_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             if (e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Mouse || e.Pointer.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Pen)
@@ -254,8 +291,10 @@ namespace Reborn_Zune
                     parentAnimation.StartAnimation(panel.Parent as UIElement);
                 }
             }
-        }
+        }//PlayerFloating_PointerEntered end
 
+
+        // PlayerFloating_PointerExited
         private void PlayerFloating_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             var panel = (sender as FrameworkElement).FindDescendant<DropShadowPanel>();
@@ -267,19 +306,30 @@ namespace Reborn_Zune
                 var parentAnimation = new ScaleAnimation() { To = "1", Duration = TimeSpan.FromMilliseconds(900) };
                 parentAnimation.StartAnimation(panel.Parent as UIElement);
             }
+            
             GC.Collect();
-        }
 
+        }//PlayerFloating_PointerExited end
+
+
+        // PlayerFloating_Tapped
         private void PlayerFloating_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // goto TilePage
+            
             Frame.Navigate(typeof(TilePage), MainVM, new DrillInNavigationTransitionInfo());
-        }
+
+        }//PlayerFloating_Tapped end
 
 
+        // NewPlaylistButton_Click
         private void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            // create new playlist
+            /*
             bool result = MainVM.LibraryViewModel.CreatePlaylist(PlaylistName.Text);
+
             if (result)
             {
                 AddPlaylistFlyout.Hide();
@@ -288,8 +338,23 @@ namespace Reborn_Zune
             {
                 UnAvailableHint.Visibility = Visibility.Visible;
             }
-        }
+            */
 
+            //RnD
+            bool result = MainVM.LibraryViewModel.UpdateAllPlaylists();
+            if (result)
+            {
+                AddPlaylistFlyout.Hide();
+            }
+            else
+            {
+                UnAvailableHint.Visibility = Visibility.Visible;
+            }
+
+        }//NewPlaylistButton_Click end
+
+
+        // PlayButton_Tapped 
         private void PlayButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var album = (sender as Button).DataContext as ILocalListModel;
@@ -306,10 +371,11 @@ namespace Reborn_Zune
             }
             
             e.Handled = true;
-        }
 
-        
+        }// PlayButton_Tapped end
 
+
+        // Albums_Loaded
         private async void Albums_Loaded(object sender, RoutedEventArgs e)
         {
             if(_storedItem != null)
@@ -324,8 +390,10 @@ namespace Reborn_Zune
                         animation, _storedItem, "Thumbnail");
                 }
             }
-        }
+        }// Albums_Loaded end
 
+
+        // Playlists_Loaded
         private async void Playlists_Loaded(object sender, RoutedEventArgs e)
         {
             if(_storedItem != null)
@@ -340,7 +408,8 @@ namespace Reborn_Zune
                         animation, _storedItem, "Thumbnail");
                 }
             }
-        }
+
+        }//Playlists_Loaded end
 
         private void AddToPlaylistFlyout_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -395,6 +464,7 @@ namespace Reborn_Zune
             }
         }
 
+        // 
         private void ShuffleAllPlaylistButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             MainVM.ShuffleAllPlaylists();
@@ -409,9 +479,10 @@ namespace Reborn_Zune
             }
         }
 
-
+        // NewPlaylistButton2_Tapped
         private void NewPlaylistButton2_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            /*
             bool result = MainVM.LibraryViewModel.CreatePlaylist(PlaylistName2.Text);
             if (result)
             {
@@ -421,7 +492,23 @@ namespace Reborn_Zune
             {
                 UnAvailableHint2.Visibility = Visibility.Visible;
             }
-        }
+            */
+
+            //RnD
+            bool result = MainVM.LibraryViewModel.UpdateAllPlaylists();
+            
+            /*
+            if (result)
+            {
+                AddPlaylistFlyout.Hide();
+            }
+            else
+            {
+                UnAvailableHint.Visibility = Visibility.Visible;
+            }
+            */
+
+        }//NewPlaylistButton2_Tapped end
 
         private void ComboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

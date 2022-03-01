@@ -438,14 +438,14 @@
                                         Stretch="Uniform" />
                                     <Image
                                         x:Name="MusicThumbnail"
-                                        Width="400"
-                                        Height="400"
+                                        Width="200"
+                                        Height="200"
                                         VerticalAlignment="Top"
                                         Source="ms-appx:///Assets/LargeTile.scale-400.png"
                                         Stretch="UniformToFill" />
                                     <Grid
                                         x:Name="TopTextBlocks"
-                                        Height="30"
+                                        Height="20"
                                         VerticalAlignment="Top"
                                         Background="Black">
                                         <TextBlock
@@ -1012,9 +1012,9 @@
                         <Border x:Name="ControlPanel_ControlPanelVisibilityStates_Border">
                             <Grid x:Name="ControlPanelGrid" VerticalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MinWidth="210" MaxWidth="470" />
-                                    <ColumnDefinition MinWidth="265" MaxWidth="930" />
-                                    <ColumnDefinition MinWidth="240" />
+                                    <ColumnDefinition MinWidth="105" MaxWidth="275" />
+                                    <ColumnDefinition MinWidth="132" MaxWidth="260" />
+                                    <ColumnDefinition MinWidth="120" />
                                 </Grid.ColumnDefinitions>
 
                                 <controls:DockPanel

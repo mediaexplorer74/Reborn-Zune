@@ -49,6 +49,9 @@ namespace Reborn_Zune_MusicLibraryService
             await CreateLibraryInstanceAsync();
 
             Completed?.Invoke(this, EventArgs.Empty);
+
+            //RnD
+            RefreshLibrary();
         }//Run end
 
 
@@ -68,9 +71,9 @@ namespace Reborn_Zune_MusicLibraryService
                 Debug.WriteLine("DBMS Initialize");
                 DataBaseEngine.Initialize();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine("[ex] DBMS Initialize exception: " + ex.Message);
             }
 
         }//InitializeDBMS end
@@ -83,9 +86,9 @@ namespace Reborn_Zune_MusicLibraryService
             {
                 Library = await DataBaseEngine.FetchAllAsync();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.ToString());
+                Debug.WriteLine("[ex] CreateLibraryInstanceAsync exception:" + ex.Message);
             }
 
         }//CreateLibraryInstanceAsync end
@@ -100,7 +103,9 @@ namespace Reborn_Zune_MusicLibraryService
             try
             {
                 Debug.WriteLine("Library Initialize");
+                
                 var result = await LibraryEngine.Initialize(IsFirstUse);
+                
                 foreach (var i in result)
                 {
                     if (i.Value.GetType().Name == "StorageFile") //Add/Update DataBase
@@ -131,9 +136,9 @@ namespace Reborn_Zune_MusicLibraryService
                 }
                 //InitializeFinished?.Invoke(null, EventArgs.Empty);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine("[ex] LoadLibraryDiskAsync Exception: " + ex.Message);
             }
 
         }//LoadLibraryDiskAsync end
@@ -201,7 +206,9 @@ namespace Reborn_Zune_MusicLibraryService
 
 
         // RefreshLibrary
-        private void RefreshLibrary()
+        //private -> public 
+            
+        public void RefreshLibrary()
         {
             Library.MInP = new ObservableCollection<MLMusicInPlaylistModel>(DataBaseEngine.FetchSongPlaylistRelationship().Select(m => new MLMusicInPlaylistModel(m)).ToList());
 
