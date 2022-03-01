@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="uap mp uap3">
+
   <Identity Name="ReburnZuneV1" Publisher="CN=media" Version="1.2.4.0" />
   <mp:PhoneIdentity PhoneProductId="4a51ff65-a93d-44b1-95a8-ecc35ebd3118" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Reburn-Zune v1</DisplayName>
+    <DisplayName>Reburn-Zune v0.2.4a</DisplayName>
     <PublisherDisplayName>mediaexplorer</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -13,12 +20,13 @@
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
+
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Vapwave88.App">
-      <uap:VisualElements DisplayName="Reburn-Zune v1" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Brand new local music app. Still under closed testing." BackgroundColor="#03cbfe">
+      <uap:VisualElements DisplayName="Reburn-Zune v0.2.4-alpha" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Reburn-Zune Tech build v1.2.4" BackgroundColor="#03cbfe">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" a:Optional="true" xmlns:a="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"  BackgroundColor="#f1f1f1"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png"/>
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="landscape"/>
           <uap:Rotation Preference="portrait"/>
@@ -28,7 +36,8 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
-    <uap:Capability Name="musicLibrary" />
-    <uap3:Capability Name="backgroundMediaPlayback" />
+    <uap3:Capability Name="backgroundMediaPlayback"/>
+    <uap:Capability Name="musicLibrary"/>
+    <DeviceCapability Name="lowLevel"/>
   </Capabilities>
 </Package>

@@ -1,4 +1,4 @@
-# Project Reborn Zune v1 alpha (tech num. 1.2.4)
+# Project Reborn Zune v0.2.4-alpha (tech num. 1.2.4)
 ![Zune Logo](Artwork/Zune-Reburn.png)
 
 ## Words "forked" from author of Reborn Zune :)
@@ -41,7 +41,7 @@ and the modern Fluent Design.
 ## Environment
 Target Version: 10.0.19041.0
 
-Min Version: 10.0.17xxx.x (by now)
+Min Version: 10.0.15063.0 
 
 ## The Original (Zune-Reburn at MS Store) 
 http://www.microsoft.com/store/apps/9MWK5C8DFM1P
