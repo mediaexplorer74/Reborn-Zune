@@ -37,10 +37,12 @@ Target Version: 10.0.19041.0
 Min Version: 10.0.17xxx.x (by now)
 
 ## Thanks
-- [Junda Yin](https://github.com/jasonwun/) 
-Junda Yin (jasonwun)
+- [Junda Yin](https://github.com/jasonwun/) "Zune re-developer" :)
 
 ## The Original (Zune-Reburn at MS Store) 
 http://www.microsoft.com/store/apps/9MWK5C8DFM1P
+
+
+AS IS. RnD only. No support.
 
 -- [m][e] 2022
