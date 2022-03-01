@@ -5,6 +5,11 @@
 combining the fasinating and attractive elements from Zune with Fluent design.
 If not, I wish this repo, this app would provide you a new level of experience of music player app."
 
+## Screenshots
+![Pic 1](Artwork/pic1.png)
+![Pic 2](Artwork/pic2.png)
+![Pic 3](Artwork/pic3.png)
+
 ### What is
 This is a music player that plays local music files in your library. 
 Thanks to the UWP community for providing so much useful and nice open source, 
