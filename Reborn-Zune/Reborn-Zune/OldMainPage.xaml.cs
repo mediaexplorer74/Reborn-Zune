@@ -7,7 +7,7 @@ using Reborn_Zune.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
+//using System.Drawing;
 using System.Numerics;
 using Windows.Graphics.Display;
 using Windows.Graphics.Effects;

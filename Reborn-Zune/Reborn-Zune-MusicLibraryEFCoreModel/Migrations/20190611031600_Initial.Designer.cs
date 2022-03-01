@@ -3,7 +3,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.EntityFrameworkCore.Storage;//.Storage.ValueConversion;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Reborn_Zune_MusicLibraryEFCoreModel;
 
 namespace Reborn_Zune_MusicLibraryEFCoreModel.Migrations
