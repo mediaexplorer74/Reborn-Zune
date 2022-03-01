@@ -12,10 +12,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-// The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
+// CustomMediaTransportControl : Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
 namespace Reborn_Zune.Control
 {
+
+    // CustomMediaTransportControl class
     public sealed class CustomMediaTransportControl : MediaTransportControls
     {
         public event EventHandler<EventArgs> TilePageClicked;
@@ -41,11 +43,15 @@ namespace Reborn_Zune.Control
         Button FullScreenButton;
         Button ExitButton;
 
+
+        // CustomMediaTransportControl
         public CustomMediaTransportControl()
         {
             DefaultStyleKey = typeof(CustomMediaTransportControl);
-        }
 
+        }//CustomMediaTransportControl end
+
+        // OnApplyTemplate
         protected override void OnApplyTemplate()
         {
             // This is where you would get your custom button and create an event handler for its click method.
@@ -98,22 +104,33 @@ namespace Reborn_Zune.Control
 
 
             base.OnApplyTemplate();
-        }
 
+        }//OnApplyTemplate end
+
+
+        // ExitButton_Clicked
         private void ExitButton_Clicked(object sender, RoutedEventArgs e)
         {
             ExitButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
 
+        }//ExitButton_Clicked end
+
+
+        // FullScreenButton_Clicked
         private void FullScreenButton_Clicked(object sender, RoutedEventArgs e)
         {
             FullScreenButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
 
+        }//FullScreenButton_Clicked end
+
+
+        // ShuffleCheckBox_Unchecked
         private void ShuffleCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             ShuffleCheckBoxUnchecked?.Invoke(this, EventArgs.Empty);
-        }
+        }//ShuffleCheckBox_Unchecked end
+
+
 
         private void ShuffleCheckBox_Checked(object sender, RoutedEventArgs e)
         {

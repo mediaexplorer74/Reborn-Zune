@@ -13,33 +13,54 @@ using Windows.Storage;
 
 namespace Reborn_Zune_MusicLibraryService
 {
+    // MusicLibraryService class
     public class MusicLibraryService : IService
     {
-        private bool IsFirstUse => SystemInformation.IsFirstRun;
+        // IsFirstUse
+        // bool IsFirstUse => SystemInformation.IsFirstRun;
+        private bool IsFirstUse
+        {
+            get
+            {
+                return SystemInformation.IsFirstRun;
+            }
+        }
 
+        // Completed property
         public event EventHandler Completed;
 
+       
+        // Library property
+        public Library Library { get; set; }
+
+
+        // 
         public MusicLibraryService()
         {
             Run();
         }
 
-        public Library Library { get; set; }
-
+        // Run
         public async void Run()
         {
             InitializeDBMS();
+
             await LoadLibraryDiskAsync();
             await CreateLibraryInstanceAsync();
-            Completed?.Invoke(this, EventArgs.Empty);
-        }
 
+            Completed?.Invoke(this, EventArgs.Empty);
+        }//Run end
+
+
+        // Clean
         public void Clean()
         {
             DataBaseEngine.Reset();
         }
 
         #region DBMS (Sealed)
+
+        // InitializeDBMS
         private void InitializeDBMS()
         {
             try
@@ -52,8 +73,10 @@ namespace Reborn_Zune_MusicLibraryService
                 Debug.WriteLine(e.Message);
             }
 
-        }
+        }//InitializeDBMS end
 
+
+        // CreateLibraryInstanceAsync 
         private async Task CreateLibraryInstanceAsync()
         {
             try
@@ -65,10 +88,13 @@ namespace Reborn_Zune_MusicLibraryService
                 Debug.WriteLine(e.ToString());
             }
 
-        }
+        }//CreateLibraryInstanceAsync end
         #endregion
 
+
         #region LibraryDisk (Sealed)
+
+        // LoadLibraryDiskAsync
         private async Task LoadLibraryDiskAsync()
         {
             try
@@ -110,16 +136,24 @@ namespace Reborn_Zune_MusicLibraryService
                 Debug.WriteLine(e.Message);
             }
 
-        }
+        }//LoadLibraryDiskAsync end
+
         #endregion
 
+
         #region ServiceOperation
+
+        // AddSongsToPlaylist
         public void AddSongsToPlaylist(string v, List<MLMusicModel> musics)
         {
             DataBaseEngine.AddSongsToPlaylist(v, musics);
-            RefreshLibrary();
-        }
 
+            RefreshLibrary();
+        
+        }//AddSongsToPlaylist end
+
+
+        // CreatePlaylist
         public bool CreatePlaylist(string playlistName)
         {
             if (!DataBaseEngine.PlaylistNameAvailable(playlistName))
@@ -132,33 +166,51 @@ namespace Reborn_Zune_MusicLibraryService
                 RefreshLibrary();
                 return true;
             }
-        }
 
+        }//CreatePlaylist end
+
+
+        // EditPlaylistName
         public void EditPlaylistName(string oldName, string newName)
         {
             DataBaseEngine.EditPlaylistName(oldName, newName);
-            RefreshLibrary();
-        }
 
+            RefreshLibrary();
+
+        }//EditPlaylistName end 
+
+
+        // DeletePlaylist 
         public void DeletePlaylist(string name)
         {
             DataBaseEngine.DeletePlaylist(name);
-            RefreshLibrary();
-        }
 
+            RefreshLibrary();
+
+        }//DeletePlaylist end 
+
+
+        // RemoveSongsFromPlaylist
         public void RemoveSongsFromPlaylist(string playlistName, List<MLMusicModel> musics)
         {
             DataBaseEngine.RemoveSongsFromPlaylist(playlistName, musics);
-            RefreshLibrary();
-        }
 
+            RefreshLibrary();
+
+        }//RemoveSongsFromPlaylist end
+
+
+        // RefreshLibrary
         private void RefreshLibrary()
         {
             Library.MInP = new ObservableCollection<MLMusicInPlaylistModel>(DataBaseEngine.FetchSongPlaylistRelationship().Select(m => new MLMusicInPlaylistModel(m)).ToList());
+
             Library.Playlists = new ObservableCollection<MLPlayListModel>(DataBaseEngine.FetchPlaylist().Select(p => new MLPlayListModel(p)).ToList());
-        }
+        
+        }//RefreshLibrary end
 
         #endregion
 
-    }
-}
+    }//MusicLibraryService class end
+
+}//namespace end

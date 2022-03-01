@@ -15,35 +15,47 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
+// Reborn_Zune.Control : User Control 
 
+// Reborn_Zune.Control namespace
 namespace Reborn_Zune.Control
 {
+
+    // CompactGridControl class
     public sealed partial class CompactGridControl : UserControl
     {
 
-
-
+        // ThumbanilSource property
         public ObservableCollection<BitmapImage> ThumbanilSource
         {
             get { return (ObservableCollection<BitmapImage>)GetValue(ThumbanilSourceProperty); }
             set { SetValue(ThumbanilSourceProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ThumbanilSource.  This enables animation, styling, binding, etc...
+        // ThumbanilSourceProperty property
+        // Using a DependencyProperty as the backing store for ThumbanilSource.
+        // This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ThumbanilSourceProperty =
-            DependencyProperty.Register("ThumbanilSource", typeof(ObservableCollection<BitmapImage>), typeof(CompactGridControl), new PropertyMetadata(new ObservableCollection<BitmapImage>(), onThumbnailSourceChanged));
+            DependencyProperty.Register("ThumbanilSource", typeof(ObservableCollection<BitmapImage>), 
+                typeof(CompactGridControl), 
+                new PropertyMetadata(new ObservableCollection<BitmapImage>(), onThumbnailSourceChanged));
 
+
+
+        // onThumbnailSourceChanged
         private static void onThumbnailSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((CompactGridControl)d).onThumbnailSourceChanged(e.NewValue as ObservableCollection<BitmapImage>);
-        }
+            ((CompactGridControl)d).onThumbnailSourceChanged
+                (e.NewValue as ObservableCollection<BitmapImage>);
+        }//onThumbnailSourceChanged end
 
         private void onThumbnailSourceChanged(ObservableCollection<BitmapImage> source)
         {
             gridView.ItemsSource = source;
         }
 
+
+        // CompactGridControl
         public CompactGridControl()
         {
             this.InitializeComponent();
@@ -59,6 +71,9 @@ namespace Reborn_Zune.Control
                 "a",
                 "a",
             };
-        }
-    }
-}
+
+        }//CompactGridControl end
+
+    }//CompactGridControl class end
+
+}//Reborn_Zune.Control namespace end

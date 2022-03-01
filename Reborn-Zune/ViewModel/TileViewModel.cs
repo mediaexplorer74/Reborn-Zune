@@ -41,15 +41,22 @@ namespace Reborn_Zune.ViewModel
             
         }
 
+        // TileViewModel
         public TileViewModel(ObservableCollection<BitmapImage> thumbnails)
         {
             BitmapList = thumbnails;
             Tiles = new ObservableCollection<UIElement>();
-            CalculateScreeInfo();
-            CreateTile();
-            
-        }
 
+            // calculate screen info
+            CalculateScreeInfo();
+            
+            // create tile
+            CreateTile();
+
+        }//TileViewModel end
+
+
+        // CalculateScreeInfo 
         private void CalculateScreeInfo()
         {
             var displayInformation = DisplayInformation.GetForCurrentView();
@@ -60,10 +67,12 @@ namespace Reborn_Zune.ViewModel
             var tileViewPixel = 4900 / RawPVP;
             var percentage = 1 + (RawPVP+4) / 10;
             MaxTileNumer = (int)((maxViewPixel / tileViewPixel) * (0.22 * percentage));
-        }
+        }//CalculateScreeInfo end
         #endregion
 
         #region Properties
+
+        // BitmapList property
         public ObservableCollection<BitmapImage> BitmapList
         {
             get
@@ -80,6 +89,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // Tiles property
         public ObservableCollection<UIElement> Tiles
         {
             get
@@ -96,6 +106,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // ActualWidth property
         public double ActualWidth
         {
             get
@@ -112,6 +123,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // ActualHeight property
         public double ActualHeight
         {
             get
@@ -128,6 +140,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // MaxTileNumer property
         public int MaxTileNumer
         {
             get
@@ -145,8 +158,10 @@ namespace Reborn_Zune.ViewModel
         }
         #endregion
 
-
+        
         #region Helpers
+
+        // Spans
         private int Spans(int i)
         {
             int val = rnd.Next(0,200);
@@ -162,15 +177,20 @@ namespace Reborn_Zune.ViewModel
             {
                 return 1;
             }
-        }
+        }//Spans end
 
+
+        // CreateTile
         private void CreateTile()
         {
             var a = new ObservableCollection<UIElement>();
+            
             for (int i = 0; i < MaxTileNumer; i++)
             {
                 int factor = Spans(i);
-                int id = rnd.Next(BitmapList.Count);
+
+                int id = 1; //rnd.Next(BitmapList.Count); // ?
+
                 Tile tile = new Tile()
                 {
                     Width = factor * 70,
@@ -178,17 +198,25 @@ namespace Reborn_Zune.ViewModel
                     Thumbnail = BitmapList[id],
                     Index = i
                 };
+
                 a.Add(tile);
             }
-            Tiles = a;
-        }
 
+            Tiles = a;
+
+        }//CreateTile end
+
+
+        // ClearTiles
         public void ClearTiles()
         {
             var a = new ObservableCollection<UIElement>();
             Tiles = a;
+
             GC.Collect();
-        }
+
+        }//ClearTiles end
+        
         #endregion
     }
 }
