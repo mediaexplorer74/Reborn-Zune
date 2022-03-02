@@ -6,5 +6,6 @@ namespace Reborn_Zune_MusicLibraryEFCoreModel
 {
     public interface IEFCoreModel
     {
+
     }
 }

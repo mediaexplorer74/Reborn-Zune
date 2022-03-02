@@ -1,10 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// MusicLibraryDbContext
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 
+// Reborn_Zune_MusicLibraryEFCoreModel namespace
 namespace Reborn_Zune_MusicLibraryEFCoreModel
 {
+
+    // MusicLibraryDbContext class
     public class MusicLibraryDbContext : DbContext
     {
         public DbSet<Music> Musics { get; set; }
@@ -15,9 +20,11 @@ namespace Reborn_Zune_MusicLibraryEFCoreModel
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // library.db stored at AppData Local Packages ReburnZuneV1xxx LocalState folder
             optionsBuilder.UseSqlite("Data Source=library.db");
         }
 
+        // Creation of "MusicLibrary" Model 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

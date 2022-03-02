@@ -424,8 +424,8 @@ namespace Reborn_Zune.Control
         // protected override
         protected override Size MeasureOverride(Size availableSize)
         {
-            //int a = 2;
-            Debug.WriteLine("[i] MainPage - Measure override");
+            // TEMP
+            //Debug.WriteLine("[i] MainPage - Measure override");
             
             // Compositor will be null the very first time
             if (_compositor == null)

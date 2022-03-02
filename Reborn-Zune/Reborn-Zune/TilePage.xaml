@@ -51,36 +51,40 @@
                 <Image
                     Width="35"
                     Height="35"
-                    Source="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.PreviewImage, Mode=OneWay}" />
+                    Source="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.PreviewImage, 
+                    Mode=OneWay}" />
             </Border>
 
             <StackPanel Margin="10,10,0,0">
                 <TextBlock
                     HorizontalAlignment="Left"
-                    FontSize="29"
+                    FontSize="24"
                     Foreground="White"
-                    Text="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.MediaItem.Music.Title, Mode=OneWay}" />
+                    Text="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.MediaItem.Music.Title, 
+                    Mode=OneWay}" />
                 <TextBlock
                     Margin="0,-4,0,0"
                     HorizontalAlignment="Left"
                     FontSize="24"
                     Foreground="White"
-                    Text="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.MediaItem.Music.Artist, Mode=OneWay}" />
+                    Text="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.MediaItem.Music.Artist, 
+                    Mode=OneWay}" />
                 <TextBlock
                     Margin="0,9,0,0"
                     HorizontalAlignment="Left"
                     FontSize="24"
                     Foreground="White"
-                    Text="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.MediaItem.Music.AlbumTitle, Mode=OneWay}" />
+                    Text="{x:Bind MainVM.PlayerViewModel.MediaList.CurrentItem.MediaItem.Music.AlbumTitle, 
+                    Mode=OneWay}" />
             </StackPanel>
         </StackPanel>
 
 
         <Grid
             x:Name="ListGrid"
-            Width="80"
+            Width="100"
             Height="160"
-            Margin="0,0,8,20"
+            Margin="0,0,10,10"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="Black">
@@ -93,7 +97,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:LocalMusicModel">
                         <StackPanel
-                            Width="18"
+                            Width="120"
                             Margin="0,0,0,8"
                             HorizontalAlignment="Left">
                             <TextBlock
@@ -114,7 +118,7 @@
 
         <MediaPlayerElement
             x:Name="TileMediaElement"
-            Height="40"
+            Height="100"
             VerticalAlignment="Bottom"
             AreTransportControlsEnabled="True">
             <MediaPlayerElement.TransportControls>

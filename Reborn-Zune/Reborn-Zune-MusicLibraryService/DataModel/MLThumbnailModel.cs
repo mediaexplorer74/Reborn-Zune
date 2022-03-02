@@ -19,6 +19,9 @@ namespace Reborn_Zune_MusicLibraryService.DataModel
 
         public void GetBitmapImage()
         {
+            //RnD: todo
+
+            /*
             if (ImageBytes.Length == 0)
             {
                 Image = new BitmapImage(new Uri("ms-appx:///Assets/Vap-logo-placeholder.jpg"));
@@ -28,10 +31,14 @@ namespace Reborn_Zune_MusicLibraryService.DataModel
                 InMemoryRandomAccessStream randomAccessStream = new InMemoryRandomAccessStream();
                 DataWriter writer = new DataWriter(randomAccessStream.GetOutputStreamAt(0));
                 writer.WriteBytes(ImageBytes);
-                writer.StoreAsync();
+                _ = writer.StoreAsync();
                 Image = new BitmapImage();
                 Image.SetSource(randomAccessStream);
             }
+            */
+
+            //TEMP
+            //Image = new BitmapImage(new Uri("ms-appx:///Assets/Vap-logo-placeholder.jpg"));
         }
 
         public void UnwrapDataFields(IEFCoreModel model)

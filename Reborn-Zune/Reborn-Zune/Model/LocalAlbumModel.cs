@@ -1,10 +1,17 @@
-﻿using GalaSoft.MvvmLight;
-using Reborn_Zune.Model.Interface;
-using Reborn_Zune.ViewModel;
-using System.Collections.ObjectModel;
+﻿// LocalAlbumModel
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+
+using System.Collections.ObjectModel;
+
+using GalaSoft.MvvmLight;
+using Reborn_Zune.Model.Interface;
+using Reborn_Zune.ViewModel;
+
+
+
 
 namespace Reborn_Zune.Model
 {

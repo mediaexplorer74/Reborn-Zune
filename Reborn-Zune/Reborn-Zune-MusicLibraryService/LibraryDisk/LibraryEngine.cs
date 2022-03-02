@@ -1,4 +1,6 @@
-﻿using System;
+﻿// LibraryEngine
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,11 +9,18 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
 
+
+// Reborn_Zune_MusicLibraryService.LibraryDisk
 namespace Reborn_Zune_MusicLibraryService.LibraryDisk
 {
+
+    // LibraryEngine class
     static class LibraryEngine
     {
-        public static async Task<List<KeyValuePair<StorageLibraryChangeType, object>>> Initialize(bool IsFirstUse)
+
+        //
+        public static async Task<List<KeyValuePair<StorageLibraryChangeType, object>>> 
+            Initialize(bool IsFirstUse)
         {
             if (IsFirstUse)
             {
@@ -23,9 +32,11 @@ namespace Reborn_Zune_MusicLibraryService.LibraryDisk
             }
         }
 
+        // LoadLibrary
         private static async Task<List<KeyValuePair<StorageLibraryChangeType, object>>> LoadLibrary()
         {
-            List<KeyValuePair<StorageLibraryChangeType, object>> changes = new List<KeyValuePair<StorageLibraryChangeType, object>>();
+            List<KeyValuePair<StorageLibraryChangeType, object>> changes = 
+                new List<KeyValuePair<StorageLibraryChangeType, object>>();
             try
             {
                 QueryOptions queryOption = new QueryOptions
@@ -59,8 +70,10 @@ namespace Reborn_Zune_MusicLibraryService.LibraryDisk
                 return changes;
             }
 
-        }
+        }//LoadLibrary end
 
+
+        // LoadChanges
         private static async Task<List<KeyValuePair<StorageLibraryChangeType, object>>> LoadChanges()
         {
             List<KeyValuePair<StorageLibraryChangeType, object>> changes = new List<KeyValuePair<StorageLibraryChangeType, object>>();
@@ -119,6 +132,8 @@ namespace Reborn_Zune_MusicLibraryService.LibraryDisk
                 return changes;
             }
 
-        }
-    }
-}
+        }// LoadChanges end
+
+    }//LibraryEngine class end
+
+}//namespace end

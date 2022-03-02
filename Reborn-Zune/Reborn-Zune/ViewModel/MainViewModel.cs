@@ -20,19 +20,26 @@ namespace Reborn_Zune.ViewModel
     public class MainViewModel : ViewModelBase
     {
         #region Fields
+        
         public CoreDispatcher dispatcher;
+        
         private LibraryViewModel _libraryViewModel;
         private PlayerViewModel _playerViewModel;
         private DetailViewModel _detailViewmodel;
+        
         //private TileViewModel _tileViewModel;
+        
         public MediaPlayer _player = PlaybackService.Instance.Player;
         private ILocalListModel _clickedList;
         private ObservableCollection<LocalAlbumModel> _albumList;
         private ObservableCollection<LocalPlaylistModel> _playlistList;
         private ObservableCollection<string> _playlistNameList;
         private Visibility _floatingVisible = Visibility.Collapsed;
+        
         public bool _isStop = true;
+
         #endregion
+
 
         #region Constructor
         public MainViewModel(CoreDispatcher dispatcher)
@@ -42,30 +49,47 @@ namespace Reborn_Zune.ViewModel
             PlayerViewModel = new PlayerViewModel(_player, this.dispatcher);
         }
 
+        // LibraryViewModel_InitializeFinished
         private void LibraryViewModel_InitializeFinished(object sender, EventArgs e)
         {
-            PlaylistNameList = new ObservableCollection<string>(LibraryViewModel.Playlists.Select(p => p.Playlist.Name).ToList());
-        }
+            PlaylistNameList = 
+                new ObservableCollection<string>(
+                    LibraryViewModel.Playlists.Select(p => p.Playlist.Name).ToList()
+                    );
 
+        }//LibraryViewModel_InitializeFinished end
+
+
+        // SetMediaList
         public void SetMediaList()
         {
             if (PlayBackListConsistencyDetect(DetailViewModel.Musics))
+            {
                 PlaybackList = ToPlayBackList(DetailViewModel.Musics);
-            PlayerViewModel.MediaList = new MediaListViewModel(DetailViewModel.Musics, PlaybackList, dispatcher);
-        }
+            }
 
+            PlayerViewModel.MediaList = 
+                    new MediaListViewModel(DetailViewModel.Musics, PlaybackList, dispatcher);
+
+        }//SetMediaList end
+
+
+        // SetMediaList 
         public void SetMediaList(ILocalListModel model)
         {
             if (PlayBackListConsistencyDetect(model.Musics))
                 PlaybackList = ToPlayBackList(model.Musics);
-            PlayerViewModel.MediaList = new MediaListViewModel(model.Musics, PlaybackList, dispatcher);
-        }
+            PlayerViewModel.MediaList = 
+                new MediaListViewModel(model.Musics, PlaybackList, dispatcher);
 
-        //public void 
+        }//SetMediaList end
 
         #endregion
 
+
         #region Properties
+
+        // PlayerViewModel property
         public PlayerViewModel PlayerViewModel
         {
             get
@@ -79,6 +103,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // LibraryViewModel
         public LibraryViewModel LibraryViewModel
         {
             get
@@ -95,6 +120,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // DetailViewModel
         public DetailViewModel DetailViewModel
         {
             get
@@ -111,12 +137,15 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // PlaybackList
         public MediaPlaybackList PlaybackList
         {
             get { return _player.Source as MediaPlaybackList; }
             set { _player.Source = value; }
         }
 
+
+        // ClickedList
         public ILocalListModel ClickedList
         {
             get
@@ -133,6 +162,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // AlbumList
         public ObservableCollection<LocalAlbumModel> AlbumList
         {
             get
@@ -149,6 +179,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // PlaylistList
         public ObservableCollection<LocalPlaylistModel> PlaylistList
         {
             get
@@ -165,6 +196,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // PlaylistNameList
         public ObservableCollection<string> PlaylistNameList
         {
             get
@@ -181,6 +213,7 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        // FloatingVisible
         public Visibility FloatingVisible
         {
             get
@@ -199,15 +232,17 @@ namespace Reborn_Zune.ViewModel
 
         #endregion
 
+
+
         #region Helpers
 
-
-
+        //RnD
         //public void CreatTiles()
         //{
         //    TileViewModel.CreateTiles(LibraryViewModel.Thumbnails);
         //}
 
+        //
         public MediaPlaybackList ToPlayBackList(ObservableCollection<LocalMusicModel> musics)
         {
             var playbackList = new MediaPlaybackList();
@@ -222,7 +257,7 @@ namespace Reborn_Zune.ViewModel
             return playbackList;
         }
 
-
+        //
         public void SetClickList(ILocalListModel clickedItem)
         {
             if(clickedItem is LocalAlbumModel)
@@ -238,13 +273,14 @@ namespace Reborn_Zune.ViewModel
             }
         }
 
+        //
         private bool PlayBackListConsistencyDetect(ObservableCollection<LocalMusicModel> currentList)
         {
             if (PlaybackList == null)
                 return true;
 
             // Verify consistency of the lists that were passed in
-            var mediaListIds = currentList.Select(i => i.Music.Id);
+            System.Collections.Generic.IEnumerable<string> mediaListIds = currentList.Select(i => i.Music.Id);
             var playbackListIds = PlaybackList.Items.Select(
                 i => (string)i.Source.CustomProperties.SingleOrDefault(
                     p => p.Key == LocalMusicModel.MediaItemIdKey).Value);
@@ -256,12 +292,15 @@ namespace Reborn_Zune.ViewModel
 
         }
 
+        //
         public void ShuffleAll()
         {
             if (PlayBackListConsistencyDetect(LibraryViewModel.Musics))
                 PlaybackList = ToPlayBackList(LibraryViewModel.Musics);
             PlayerViewModel.MediaList = new MediaListViewModel(LibraryViewModel.Musics, PlaybackList, dispatcher);
         }
+
+        //
 
         public void ShuffleAllPlaylists()
         {

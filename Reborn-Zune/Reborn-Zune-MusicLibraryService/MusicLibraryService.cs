@@ -84,7 +84,9 @@ namespace Reborn_Zune_MusicLibraryService
         {
             try
             {
+                //RnD
                 Library = await DataBaseEngine.FetchAllAsync();
+                //Library = DataBaseEngine.FetchAll();
             }
             catch (Exception ex)
             {
@@ -102,11 +104,15 @@ namespace Reborn_Zune_MusicLibraryService
         {
             try
             {
-                Debug.WriteLine("Library Initialize");
-                
-                var result = await LibraryEngine.Initialize(IsFirstUse);
-                
-                foreach (var i in result)
+                Debug.WriteLine("[i] Library Initialize");
+
+                // RnD
+                List<KeyValuePair<StorageLibraryChangeType, object>> result = 
+                   await LibraryEngine.Initialize(IsFirstUse);                              
+                //List<KeyValuePair<StorageLibraryChangeType, object>> result 
+                //    = await LibraryEngine.Initialize(true);
+
+                foreach (KeyValuePair<StorageLibraryChangeType, object> i in result)
                 {
                     if (i.Value.GetType().Name == "StorageFile") //Add/Update DataBase
                     {
@@ -134,6 +140,8 @@ namespace Reborn_Zune_MusicLibraryService
                         DataBaseEngine.Update((KeyValuePair<string, string>)i.Value);
                     }
                 }
+
+                //RnD : needed or not ?
                 //InitializeFinished?.Invoke(null, EventArgs.Empty);
             }
             catch (Exception ex)
@@ -168,7 +176,9 @@ namespace Reborn_Zune_MusicLibraryService
             else
             {
                 DataBaseEngine.CreatePlaylist(playlistName);
+
                 RefreshLibrary();
+                
                 return true;
             }
 

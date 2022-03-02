@@ -7,6 +7,7 @@ using Reborn_Zune.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -244,7 +245,19 @@ namespace Reborn_Zune
 
         private void Container_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            int doubleClickedIdx = MainVM.PlayerViewModel.MediaList.MediaList.IndexOf((e.OriginalSource as FrameworkElement).DataContext as LocalMusicModel);
+            int doubleClickedIdx = 0;
+
+            try
+            {
+                doubleClickedIdx = MainVM.PlayerViewModel.MediaList.MediaList.IndexOf(
+                    (e.OriginalSource as FrameworkElement).DataContext as LocalMusicModel);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] PlaylistDetailPage - Container_DoubleTapped Exception : " 
+                    + ex.Message);
+            }
+
             if (MainVM.PlayerViewModel.MediaList.CurrentItemIndex != doubleClickedIdx)
             {
                 MainVM.PlayerViewModel.SetCurrentItem(doubleClickedIdx);

@@ -21,6 +21,7 @@ namespace Reborn_Zune
         {
             this.InitializeComponent();
             TitleBarSetting();
+
             //LoadingControl.IsLoading = true;
             //MusicLibrary.Initialize(IsFirstUse);
             //MusicLibrary.InitializeFinished += MusicLibrary_InitializeFinished;

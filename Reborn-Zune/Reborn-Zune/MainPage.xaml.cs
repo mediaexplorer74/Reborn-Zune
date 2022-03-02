@@ -62,7 +62,7 @@ namespace Reborn_Zune
 
 
             //RnD
-            bool result = MainVM.LibraryViewModel.UpdateAllPlaylists();
+            //bool result = MainVM.LibraryViewModel.UpdateAllPlaylists();
             
 
         }//MainPage end
@@ -327,7 +327,7 @@ namespace Reborn_Zune
         {
 
             // create new playlist
-            /*
+            
             bool result = MainVM.LibraryViewModel.CreatePlaylist(PlaylistName.Text);
 
             if (result)
@@ -338,9 +338,10 @@ namespace Reborn_Zune
             {
                 UnAvailableHint.Visibility = Visibility.Visible;
             }
-            */
+            
 
             //RnD
+            /*
             bool result = MainVM.LibraryViewModel.UpdateAllPlaylists();
             if (result)
             {
@@ -350,6 +351,7 @@ namespace Reborn_Zune
             {
                 UnAvailableHint.Visibility = Visibility.Visible;
             }
+            */
 
         }//NewPlaylistButton_Click end
 
@@ -381,8 +383,9 @@ namespace Reborn_Zune
             if(_storedItem != null)
             {
                 albums.ScrollIntoView(_storedItem, ScrollIntoViewAlignment.Default);
+
                 ConnectedAnimation animation =
-            ConnectedAnimationService.GetForCurrentView().GetAnimation("ca2");
+                      ConnectedAnimationService.GetForCurrentView().GetAnimation("ca2");
                 
                 if (animation != null)
                 {

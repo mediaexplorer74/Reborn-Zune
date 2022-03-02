@@ -32,12 +32,12 @@ namespace Reborn_Zune.ViewModel
         private const string UNKNOWN_YEAR = "Unknown Year";
 
 
-
-        // Service
+        // Service property
         public MusicLibraryService Service
         {
             get { return ServiceLocator.GetInstance("MusicLibraryService") as MusicLibraryService; }
         }
+
 
         // LibraryViewModel
         public LibraryViewModel()
@@ -48,13 +48,15 @@ namespace Reborn_Zune.ViewModel
             Artists = new ObservableCollection<LocalArtistModel>();
             Playlists = new ObservableCollection<LocalPlaylistModel>();
 
-            Service.Completed += Service_Completed;
+            //Service.Completed += Service_Completed;
+            Service_Completed();
 
         }//LibraryViewModel end
 
 
         // Service_Completed
-        private void Service_Completed(object sender, EventArgs e)
+        //private 
+        public void Service_Completed()//(object sender, EventArgs e)
         {
             BuildLibraryTree();
 
@@ -65,32 +67,35 @@ namespace Reborn_Zune.ViewModel
         private void buildLocalPlaylistModels()
         {
             // playlists cycle
-            foreach (var list in Service.Library.Playlists)
+            foreach (MLPlayListModel list in Service.Library.Playlists)
             {
                 LocalPlaylistModel playlist = new LocalPlaylistModel
                 {
                     Playlist = Service.Library.Playlists.Where(p => p.Id == list.Id).FirstOrDefault(),
                 };
+
                 Playlists.Add(playlist);
             }
 
-            /*
+            
             foreach (var pair in Service.Library.MInP)
             {
                 LocalPlaylistModel playlist = Playlists.Where(p => p.Playlist.Id == pair.PlaylistId).FirstOrDefault();
                 var music = Musics.Where(m => m.Music.Id == pair.MusicId).FirstOrDefault();
                 playlist.Musics.Add(music);
             }
-            */
+            
 
             //-----------------------------------------
             //RnD
+            /*
             for (int i = 1; i < 2; i++)
             {
                 LocalPlaylistModel playlist = Playlists.Where(p => p.Playlist.Id != null).FirstOrDefault();
-                var music = Musics.Where(m => m.Music.Id == pair.MusicId).FirstOrDefault();
+                LocalMusicModel music = Musics.Where(m => m.Music.Id != null).FirstOrDefault();
                 playlist.Musics.Add(music);
             }
+            */
             //-----------------------------------------
 
 
@@ -100,13 +105,13 @@ namespace Reborn_Zune.ViewModel
         // buildLocalMusicAlbumArtistModels 
         private void buildLocalMusicAlbumArtistModels()
         {
-            // 
-            foreach (var song in Service.Library.Musics)
+            // RnD: !! Test it more!!
+            foreach (MLMusicModel song in Service.Library.Musics)
             {
-                var music = new LocalMusicModel
+                LocalMusicModel music = new LocalMusicModel
                 {
                     Music = song,
-                    Image = Service.Library.Thumbnails.Where(t => t.Id == song.ThumbnailId).FirstOrDefault().Image
+                    Image = null,//Service.Library.Thumbnails.Where(t => t.Id == song.ThumbnailId).FirstOrDefault().Image
                 };
 
                 Musics.Add(music);
@@ -126,14 +131,16 @@ namespace Reborn_Zune.ViewModel
                     privilegedArtist = UNKNOWN_ARTIST;
                 }
 
-                var album = Albums.Where(a => a.Title == song.AlbumTitle && a.AlbumArtist == privilegedArtist).FirstOrDefault();
+                LocalAlbumModel album = Albums.Where(a => a.Title == song.AlbumTitle && a.AlbumArtist == privilegedArtist).FirstOrDefault();
+                
+                //RnD
                 if (album == null)
                 {
                     album = new LocalAlbumModel
                     {
                         Title = song.AlbumTitle,
                         AlbumArtist = privilegedArtist,
-                        Image = Service.Library.Thumbnails.Where(t => t.Id == music.Music.ThumbnailId).FirstOrDefault().Image,
+                        Image = null,//Service.Library.Thumbnails.Where(t => t.Id == music.Music.ThumbnailId).FirstOrDefault().Image,
                         Year = song.Year
                     };
                     album.Musics.Add(music);
@@ -145,7 +152,7 @@ namespace Reborn_Zune.ViewModel
                 }
 
 
-                var artist = Artists.Where(a => a.Name == privilegedArtist).FirstOrDefault();
+                LocalArtistModel artist = Artists.Where(a => a.Name == privilegedArtist).FirstOrDefault();
                 if (artist == null)
                 {
                     artist = new LocalArtistModel
@@ -176,10 +183,24 @@ namespace Reborn_Zune.ViewModel
         // buildLocalThumbnailModels 
         private void buildLocalThumbnailModels()
         {
-            foreach (var thumb in Service.Library.Thumbnails)
+            try
             {
-                if (thumb.Image.UriSource != new Uri("ms-appx:///Vap-logo-placeholder.jpg"))
-                    Thumbnails.Add(thumb.Image);
+                foreach (var thumb in Service.Library.Thumbnails)
+                {
+                    //RnD
+                    //TEMP
+                    if (thumb.Image != null)
+                    {
+                        if (thumb.Image.UriSource != new Uri("ms-appx:///Vap-logo-placeholder.jpg"))
+                        {
+                            Thumbnails.Add(thumb.Image);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] buildLocalThumbnailModels Exception: " + ex.Message);
             }
 
         }//buildLocalThumbnailModels end
@@ -356,7 +377,7 @@ namespace Reborn_Zune.ViewModel
                     }
                 }
 
-                /*
+                
                 foreach (MLMusicInPlaylistModel pair in Service.Library.MInP)
                 {
                     LocalPlaylistModel playlist = Playlists.Where(p => p.Playlist.Id == pair.PlaylistId).FirstOrDefault();
@@ -368,9 +389,11 @@ namespace Reborn_Zune.ViewModel
                         playlist.Musics.Add(music);
                     }
                 }
-                */
+                
 
                 // ----------------
+                //RnD
+                /*
                 for (int i = 1; i < 2; i++)
                 {
                     LocalPlaylistModel playlist = Playlists.Where(p => p.Playlist.Id != null).FirstOrDefault();
@@ -381,6 +404,7 @@ namespace Reborn_Zune.ViewModel
                         playlist.Musics.Add(music);
                     }
                 }
+                */
                 // ----------------
 
                 Playlists = new ObservableCollection<LocalPlaylistModel>(Playlists.OrderBy(p => p.Playlist.Name).ToList());

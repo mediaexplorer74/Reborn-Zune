@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Reborn_Zune_MusicLibraryEFCoreModel
 {
@@ -22,7 +23,68 @@ namespace Reborn_Zune_MusicLibraryEFCoreModel
         
         public ICollection<MusicInPlaylist> MusicInPlaylists { get; set; }
 
-    }
+        // RnD ------------------------------------
+        /*
+        // file property
+        private StorageFile _file;
+        public StorageFile File
+        {
+            get
+            {
+                return _file;
+            }
+            set
+            {
+                if (_file != value)
+                {
+                    _file = value;
+                    RaisePropertyChanged(nameof(File));
+                }
+            }
+
+        }//File end
+
+        // UnwrapDataFields
+        public void UnwrapDataFields(IEFCoreModel model)
+        {
+            Music music = model as Music;
+
+            this.Id = music.Id;
+
+            this.Path = music.Path;
+
+            this.Title = music.Title;
+
+            this.Duration = music.Duration;
+
+            this.AlbumTitle = music.AlbumTitle;
+
+            this.AlbumArtist = music.AlbumArtist;
+
+            this.Artist = music.Artist;
+
+            this.Year = music.Year;
+
+            this.ThumbnailId = music.ThumbnailId;
+
+        }//UnwrapDataFields end
+
+
+        // GetFileAsync
+        public async Task GetFileAsync()
+        {
+            File = await StorageFile.GetFileFromPathAsync(Path);
+
+        }//GetFileAsync end
+        */
+
+        // ----------------------------------------
+
+    }//Music class end
+
+
+
+    // Playlist class
     public class Playlist : IEFCoreModel
     {
         public Playlist()

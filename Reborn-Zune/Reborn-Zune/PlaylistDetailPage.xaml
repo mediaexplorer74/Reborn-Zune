@@ -160,23 +160,23 @@
             <TextBlock
                 x:Name="TitleTextBlock"
                 extensions:VisualExtensions.Opacity="0"
-                FontSize="45"
+                FontSize="24"
                 FontWeight="Bold"
                 Text="{x:Bind MainVM.DetailViewModel.Title, Mode=OneWay}" />
             <TextBlock
                 x:Name="AlbumNameTextBlock"
                 extensions:VisualExtensions.Opacity="0"
-                FontSize="30"
+                FontSize="18"
                 Text="{x:Bind MainVM.DetailViewModel.Artist, Mode=OneWay}" />
             <TextBlock
                 x:Name="AlbumYearTextBlock"
                 extensions:VisualExtensions.Opacity="0"
-                FontSize="28"
+                FontSize="14"
                 Text="2019" />
             <ListView
                 x:Name="list"
-                Height="425"
-                Margin="3,60,0,0"
+                Height="325"
+                Margin="3,40,0,0"
                 HorizontalAlignment="Left"
                 extensions:VisualExtensions.Opacity="0"
                 ChoosingItemContainer="List_ChoosingItemContainer"
@@ -192,9 +192,9 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:LocalMusicModel">
-                        <Grid Width="380">
+                        <Grid Width="280">
                             <TextBlock
-                                Margin="50,5,0,5"
+                                Margin="40,5,0,5"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 FontSize="20"
