@@ -19,8 +19,8 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.25*" MinWidth="83" />
-            <ColumnDefinition Width="0.75*" MinWidth="380" />
+            <ColumnDefinition Width="0.25*" MinWidth="40" />
+            <ColumnDefinition Width="0.75*" MinWidth="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -28,14 +28,14 @@
         <StackPanel
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,100,0"
+            Margin="0,0,40,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Orientation="Vertical">
             <Image
                 x:Name="ThumbnailImage"
-                Width="270"
-                Height="270"
+                Width="170"
+                Height="170"
                 Source="{x:Bind MainVM.DetailViewModel.Thumbnail, Mode=OneWay}" />
             <Button
                 x:Name="PlayButton"
@@ -61,7 +61,7 @@
                             <Border />
                         </controls:DropShadowPanel>
                         <Border
-                            Width="165"
+                            Width="100"
                             Background="#F1F1F1"
                             CornerRadius="5">
                             <StackPanel
@@ -73,12 +73,11 @@
                                     VerticalAlignment="Center"
                                     FontFamily="Segoe MDL2 Assets"
                                     FontSize="20"
-                                    HorizontalTextAlignment="DetectFromContent"
                                     Text="&#xE768;" />
                                 <TextBlock
-                                    Margin="10,0,0,0"
+                                    Margin="0,0,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="16"
                                     Text="Play All" />
                             </StackPanel>
                         </Border>
@@ -121,7 +120,7 @@
                             <Border />
                         </controls:DropShadowPanel>
                         <Border
-                            Width="165"
+                            Width="100"
                             Background="#F1F1F1"
                             CornerRadius="5">
                             <StackPanel
@@ -135,9 +134,9 @@
                                     FontSize="20"
                                     Text="&#xE710;" />
                                 <TextBlock
-                                    Margin="15,0,0,0"
+                                    Margin="0,0,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="20"
+                                    FontSize="16"
                                     Text="Add To" />
                             </StackPanel>
                         </Border>
@@ -153,7 +152,7 @@
         <StackPanel
             Grid.Row="1"
             Grid.Column="2"
-            Margin="25,0,0,0"
+            Margin="5,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Orientation="Vertical">
@@ -175,8 +174,8 @@
                 Text="2019" />
             <ListView
                 x:Name="list"
-                Height="325"
-                Margin="3,40,0,0"
+                Height="200"
+                Margin="3,20,0,0"
                 HorizontalAlignment="Left"
                 extensions:VisualExtensions.Opacity="0"
                 ChoosingItemContainer="List_ChoosingItemContainer"
@@ -192,9 +191,9 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:LocalMusicModel">
-                        <Grid Width="280">
+                        <Grid Width="180">
                             <TextBlock
-                                Margin="40,5,0,5"
+                                Margin="10,5,0,5"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 FontSize="20"
@@ -218,9 +217,9 @@
             Grid.Row="0"
             Grid.RowSpan="2"
             Grid.Column="2"
-            Width="100"
-            Height="100"
-            Margin="0,0,50,50"
+            Width="60"
+            Height="60"
+            Margin="0,0,40,20"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             extensions:VisualExtensions.CenterPoint="50,50,0"
@@ -243,8 +242,9 @@
         <Button
             x:Name="ExitButton"
             Grid.Row="1"
-            Width="83"
+            Width="60"
             Padding="0"
+            Margin="0,0,0,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             extensions:VisualExtensions.Opacity="0"

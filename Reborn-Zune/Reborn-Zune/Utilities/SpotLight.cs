@@ -84,7 +84,7 @@ namespace Reborn_Zune.Utilities
             if (CompositionLight != null)
             {
                 CompositionLight.Dispose();
-                CompositionLight = null;
+                //CompositionLight = null;
             }
         }
 
