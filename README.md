@@ -9,7 +9,7 @@ If not, I wish this repo, this app would provide you a new level of experience o
 ## My 2 cents
 - "Zune theme" mini-research (design, animations, et.c)
 - Minimal bug workarounds / fixes
-- Refactoring (Test + Future .NET Core project moved to _A_ folder)
+- Dirty W10M design "optimization" ("minification"?) :)
 - UWP Codebase downgraded to SDK 15063 (pacthing DB SQL methods, xaml compatibility, etc.)
 
 ## Screenshots
