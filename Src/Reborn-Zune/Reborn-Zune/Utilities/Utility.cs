@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -27,8 +28,9 @@ namespace Reborn_Zune.Utilities
                 return image;
             }
             
-            catch(Exception e)
+            catch(Exception ex)
             {
+                Debug.WriteLine("[ex] ImageFromBytes error: " + ex.Message);
                 return image;
             }
         }

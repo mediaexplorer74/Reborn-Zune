@@ -61,17 +61,26 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                 Debug.WriteLine(File.Name + " Music meta data start retreiving");
 
 
-                var thumbnail = await File.GetThumbnailAsync(ThumbnailMode.MusicView, 100, ThumbnailOptions.UseCurrentScale);
-                var properties = await File.Properties.GetMusicPropertiesAsync();
+                StorageItemThumbnail thumbnail = await File.GetThumbnailAsync(
+                    ThumbnailMode.MusicView, 100, ThumbnailOptions.UseCurrentScale);
 
-                var path = File.Path;
-                var bytearray = await ConvertThumbnailToBytesAsync(thumbnail);
-                var artistName = properties.Artist != "" ? properties.Artist : UNKNOWN_ARTIST;
-                var albumArtistName = properties.AlbumArtist != "" ? properties.AlbumArtist : UNKNOWN_ARTIST;
-                var albumTitle = properties.Album != "" ? properties.Album : UNKNOWN_ALBUM;
-                var duration = properties.Duration.ToString(@"mm\:ss");
-                var albumYear = properties.Year != 0 ? properties.Year.ToString() : UNKNOWN_YEAR;
-                var songTitle = properties.Title != "" ? properties.Title : Path.GetFileNameWithoutExtension(File.Path);
+                MusicProperties properties = await File.Properties.GetMusicPropertiesAsync();
+
+                string path = File.Path;
+
+                byte[] bytearray = await ConvertThumbnailToBytesAsync(thumbnail);
+
+                string artistName = properties.Artist != "" ? properties.Artist : UNKNOWN_ARTIST;
+
+                string albumArtistName = properties.AlbumArtist != "" ? properties.AlbumArtist : UNKNOWN_ARTIST;
+
+                string albumTitle = properties.Album != "" ? properties.Album : UNKNOWN_ALBUM;
+                string duration = properties.Duration.ToString(@"mm\:ss");
+
+                string albumYear = properties.Year != 0 ? properties.Year.ToString() : UNKNOWN_YEAR;
+
+                string songTitle = properties.Title != "" ? properties.Title
+                    : Path.GetFileNameWithoutExtension(File.Path);
 
                 Debug.WriteLine("[i] Access into database (add)");
                 using (var _context = new MusicLibraryDbContext())
@@ -392,6 +401,7 @@ namespace Reborn_Zune_MusicLibraryService.DataBase
                             {
                                 Id = thumbnaillist.Id,
                                 ImageBytes = thumbnaillist.ImageBytes,
+                                Image = new BitmapImage(new Uri("ms-appx:///Assets/Vap-logo-placeholder.jpg")),
                                 //Image = new BitmapImage(),
                                 //(new Uri("ms-appx:///Assets/Vap-logo-placeholder.jpg")),//; (thumbnaillist.ImageBytes),
                             };

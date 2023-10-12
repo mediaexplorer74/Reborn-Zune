@@ -46,7 +46,7 @@ namespace Reborn_Zune
         private const float lightDepth = 200f;
         private const int animationDelay = 600;
         private const int animationDuration = 120;
-        private CompositionEffectFactory _effectFactory;
+        private CompositionEffectFactory _effectFactory = default;
         private Random _random = new Random();
         private Compositor _compositor;
         private PointLight _pointLight;
@@ -172,6 +172,8 @@ namespace Reborn_Zune
             #endregion
         }//TileRoot_Loaded end
 
+
+        // OnNavigatedTo
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             MainVM = e.Parameter as MainViewModel;
@@ -179,13 +181,14 @@ namespace Reborn_Zune
             TileMediaElement.SetMediaPlayer(MainVM._player);
             base.OnNavigatedTo(e);
         }
-        
 
+        // CustomMTC_ExitButtonClicked
         private void CustomMTC_ExitButtonClicked(object sender, EventArgs e)
         {
             Frame.GoBack();
         }
 
+        // CustomMTC_FullScreenButtonClicked
         private void CustomMTC_FullScreenButtonClicked(object sender, EventArgs e)
         {
             var view = ApplicationView.GetForCurrentView();
@@ -201,12 +204,12 @@ namespace Reborn_Zune
 
         private void CustomMTC_ListViewGridChecked(object sender, EventArgs e)
         {
-
+            //
         }
 
         private void CustomMTC_ListViewGridUnChecked(object sender, EventArgs e)
         {
-
+            //
         }
 
         private void Tiles_Loaded(object sender, RoutedEventArgs e)

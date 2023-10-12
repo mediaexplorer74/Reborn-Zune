@@ -1,4 +1,4 @@
-# Project Reborn Zune v0.3.0-alpha (tech num. 1.3.0)
+# Project Reborn Zune v0.3.1-alpha (tech num. 1.3.1)
 ![Zune Logo](Artwork/Zune-Reburn.png)
 
 ## Words "forked" from author of Reborn Zune :)
@@ -13,11 +13,8 @@ If not, I wish this repo, this app would provide you a new level of experience o
 - UWP Codebase downgraded to SDK 15063 (pacthing DB SQL methods, xaml compatibility, etc.)
 
 ## Screenshots
-![Pic 1](Images/shot1.png)
-![Pic 2](Images/shot2.png)
-![Pic 3](Images/shot3.png)
-![Pic 4](Images/shot4.png)
-![Pic 5](Images/shot5.png)
+![](Images/shot01.png)
+![](Images/shot02.png)
 
 ### What is
 This is a music player that plays local music files in your library. 
@@ -38,15 +35,23 @@ there's no way to not having Fluent design implemented in a modern UWP app.
 During you usage, you would experience the combination of the old Metro Design 
 and the modern Fluent Design.
 
-## Environment
-Target Version: 10.0.19041.0
+## Status
+- Draft / Alpha (or even pre-alpha) mode at now
+- Many features damaged via "15063 downshifting". For example, full thumbnails tile malfunction! 
 
-Min Version: 10.0.15063.0 
+## Environment
+- Windows SDK Target Version: 10.0.19041.0
+- Windows SDK Min. Version:   10.0.15063.0 
 
 ## The Original (Zune-Reburn at MS Store) 
 http://www.microsoft.com/store/apps/9MWK5C8DFM1P
 
+## Credits / Reference(s)
+- https://github.com/ahmed605  Ahmed Walid aka ahmed605
+- https://github.com/ahmed605/Reborn-Zune Reborn-Zune, the original project
 
-AS IS. RnD only. No support.
+## ..
+AS IS. RnD only. No support. DIY
 
--- [m][e] 2022
+## .
+[m][e] 2023

@@ -7,10 +7,10 @@
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   IgnorableNamespaces="uap mp uap3">
 
-  <Identity Name="ReburnZuneV1" Publisher="CN=media" Version="1.3.0.0" />
+  <Identity Name="ME.ReburnZuneV1" Publisher="CN=Admin" Version="1.3.1.0" />
   <mp:PhoneIdentity PhoneProductId="4a51ff65-a93d-44b1-95a8-ecc35ebd3118" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Reburn-Zune</DisplayName>
+    <DisplayName>Reburn-Zune 1.3.1</DisplayName>
     <PublisherDisplayName>mediaexplorer</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
