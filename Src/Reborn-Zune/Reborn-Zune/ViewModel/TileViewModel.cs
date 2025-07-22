@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using Reborn_Zune.Control;
 using System;
 using System.Collections.Generic;
@@ -197,7 +197,7 @@ namespace Reborn_Zune.ViewModel
                 {
                     Width = factor * 70,
                     Height = factor * 70,
-                    //Thumbnail = BitmapList[id],
+                    Thumbnail = BitmapList[id],
                     Index = (uint)i
                 };
 

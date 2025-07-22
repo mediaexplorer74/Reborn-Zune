@@ -106,12 +106,14 @@ namespace Reborn_Zune.ViewModel
         private void buildLocalMusicAlbumArtistModels()
         {
             // RnD: !! Test it more!!
+          if (Service.Library != null)
+           if (Service.Library.Musics != null)
             foreach (MLMusicModel song in Service.Library.Musics)
             {
                 LocalMusicModel music = new LocalMusicModel
                 {
                     Music = song,
-                    Image = null,//Service.Library.Thumbnails.Where(t => t.Id == song.ThumbnailId).FirstOrDefault().Image
+                    Image = Service.Library.Thumbnails.Where(t => t.Id == song.ThumbnailId).FirstOrDefault().Image
                 };
 
                 Musics.Add(music);

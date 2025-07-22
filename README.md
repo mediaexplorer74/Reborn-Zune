@@ -1,4 +1,5 @@
-# Project Reborn Zune v0.3.1-alpha (tech num. 1.3.1)
+# Project Reborn Zune v0.3.1-alpha -- vibe branch
+ 
 ![Zune Logo](Artwork/Zune-Reburn.png)
 
 ## Words "forked" from author of Reborn Zune :)
@@ -6,15 +7,18 @@
 combining the fasinating and attractive elements from Zune with Fluent design.
 If not, I wish this repo, this app would provide you a new level of experience of music player app."
 
+
 ## My 2 cents
 - "Zune theme" mini-research (design, animations, et.c)
 - Minimal bug workarounds / fixes
 - Dirty W10M design "optimization" ("minification"?) :)
 - UWP Codebase downgraded to SDK 15063 (pacthing DB SQL methods, xaml compatibility, etc.)
+- I planned to use "vibe coding" (pair-programming, or pair-dev. with AI) to improve this "old-new-thing"...
 
 ## Screenshots
-![](Images/shot01.png)
-![](Images/shot02.png)
+![](Images/sshot01.png)
+![](Images/sshot02.png)
+
 
 ### What is
 This is a music player that plays local music files in your library. 
